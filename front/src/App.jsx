@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
+import Commit from "./components/Commit/Commit";
 
 function App() {
   const [commits, setCommits] = useState([]);
@@ -18,22 +19,13 @@ function App() {
 
   return (
     <>
+      <h1>Commits</h1>
       <div>
-        {commits.map((commit) => {
-          console.log(commit, "commit");
-          return (
-            <a
-              key={commit.node_id}
-              href={commit.html_url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {commit.commit.message}
-            </a>
-          );
-        })}
+        {commits.length > 0 &&
+          commits.map((commit) => {
+            return <Commit key={commit.node_id} data={commit} />;
+          })}
       </div>
-      <h1>hola</h1>
     </>
   );
 }
