@@ -1,6 +1,6 @@
-// import Style from "./Commit.module.css";
+import Style from "./Commit.module.css";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Avatar, Box, Snackbar, Typography } from "@mui/material";
 
 import moment from "moment/moment";
 import { useState } from "react";
@@ -39,14 +39,7 @@ const Commit = ({ data }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "4px 6px",
-        width: "100%",
-      }}
-    >
+    <Box className={Style.main_container}>
       <Snackbar
         open={openSnack}
         autoHideDuration={2000}
@@ -62,50 +55,50 @@ const Commit = ({ data }) => {
           Copied!
         </Alert>
       </Snackbar>
-      <div>
-        <h2>
-          <a href={commitData.url} target="_blank" rel="noreferrer">
+      <Box className={Style.first_col}>
+        <a href={commitData.url} target="_blank" rel="noreferrer">
+          <Typography component={"h2"} fontSize={"20px"}>
             {commitData.title}
+          </Typography>
+        </a>
+
+        <Box className={Style.user_container}>
+          <a
+            href={committerData.commiter_redirect}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Avatar src={committerData.commiter_avatar} alt="Commiter avatar" />
           </a>
-        </h2>
-        <div
-          style={{
-            display: "flex",
-          }}
-        >
-          <img
-            src={committerData.commiter_avatar}
-            alt="avatar"
-            style={{
-              width: "40px",
-              height: "40px",
-            }}
-          />
-          <h3>
-            <a
-              href={committerData.commiter_redirect}
-              target="_blank"
-              rel="noreferrer"
-            >
+
+          <a
+            href={committerData.commiter_redirect}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Typography component={"h3"} fontSize={"18px"}>
               {committerData.commiter_name}
-            </a>
-          </h3>
-          <p>Comitted {moment(commitData.date).fromNow()}</p>
-        </div>
-      </div>
-      <div
-        style={{
-          display: "flex",
-        }}
-      >
-        <button onClick={() => copyToClipboard(commitData.sha)}>
+            </Typography>
+          </a>
+          <Typography component={"p"} fontSize={"16px"}>
+            Comitted {moment(commitData.date).fromNow()}
+          </Typography>
+        </Box>
+      </Box>
+      <Box className={Style.scnd_col}>
+        <button
+          className={Style.copy_btn}
+          onClick={() => copyToClipboard(commitData.sha)}
+        >
           <ContentCopyIcon />
         </button>
         <a href={commitData.url} target="_blank" rel="noreferrer">
-          <p>{commitData.sha.slice(0, 7)}</p>
+          <Typography component={"p"} fontSize={"16px"}>
+            {commitData.sha.slice(0, 7)}
+          </Typography>
         </a>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

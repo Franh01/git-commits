@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Commit from "./components/Commit/Commit";
+import { Box, Typography } from "@mui/material";
 
 function App() {
   const [commits, setCommits] = useState([]);
@@ -19,13 +20,15 @@ function App() {
 
   return (
     <>
-      <h1>Commits</h1>
-      <div>
+      <Typography component={"h1"} fontSize={"22px"}>
+        Commits
+      </Typography>
+      <Box>
         {commits.length > 0 &&
           commits.map((commit) => {
             return <Commit key={commit.node_id} data={commit} />;
           })}
-      </div>
+      </Box>
     </>
   );
 }
