@@ -16,8 +16,8 @@ import { useState } from "react";
 const Commit = ({ data }) => {
   const [openSnack, setOpenSnack] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const title = data.commit.message.split("\n").shift();
-  const messages = data.commit.message.split("\n");
+  let messages = data.commit.message.split("\n");
+  const title = messages.shift();
 
   const commitData = {
     title: title,
