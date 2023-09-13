@@ -6,23 +6,27 @@ An app to see the commits of this repo
 
 ### 1. Install Backend Dependencies
 
-Navigate to the `back` folder of the project and run the following command to install backend server dependencies:
+Navigate in the **terminal** to the `back` folder of the project and run the following command to install backend server dependencies:
 
 ```bash
+cd .\back\
 npm install
+cd ..
 ```
 
 ### 2. Install Frontend Dependencies
 
-Navigate to the `front` folder of the project and run the following command to install frontend app dependencies:
+Navigate in the **terminal** to the `front` folder of the project and run the following command to install frontend app dependencies:
 
 ```bash
+cd .\front\
 npm install
+cd ..
 ```
 
 ### 3. Install Main Project Dependencies
 
-Navigate to the `root` folder of the project and run the following command to install project dependencies:
+Navigate in the **terminal** to the `root` folder of the project and run the following command to install project dependencies:
 
 ```bash
 npm install
