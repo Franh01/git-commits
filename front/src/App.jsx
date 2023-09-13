@@ -41,7 +41,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Box className="main_container">
       <Snackbar
         open={openSnack}
         autoHideDuration={3000}
@@ -87,7 +87,7 @@ function App() {
             );
           })}
       </Box>
-    </>
+    </Box>
   );
 }
 

@@ -65,7 +65,7 @@ const Commit = ({ data }) => {
       <Box className={Style.first_col}>
         <Box className={Style.title_container}>
           <a href={commitData.url} target="_blank" rel="noreferrer">
-            <Typography component={"h2"} fontSize={"18px"} fontWeight={500}>
+            <Typography component={"h2"} fontSize={"16px"} fontWeight={600}>
               {commitData.title}
             </Typography>
           </a>
@@ -77,12 +77,17 @@ const Commit = ({ data }) => {
               <MoreHorizIcon
                 sx={{
                   height: "20px",
+                  fill: "#fff",
                 }}
               />
             </button>
           </Tooltip>
         </Box>
-        <Box>
+        <Box
+          sx={{
+            maxWidth: "100%",
+          }}
+        >
           {showMore &&
             commitData.messages.map((messages, index) => {
               return (
@@ -90,6 +95,7 @@ const Commit = ({ data }) => {
                   key={index + messages.slice(0, 3)}
                   component={"p"}
                   fontSize={"14px"}
+                  fontFamily={"monospace"}
                 >
                   {messages}
                 </Typography>
@@ -107,23 +113,35 @@ const Commit = ({ data }) => {
               src={committerData.commiter_avatar}
               alt="Commiter avatar"
               sx={{
-                width: "35px",
-                height: "35px",
+                width: "30px",
+                height: "30px",
               }}
             />
           </a>
 
-          <a
-            href={committerData.commiter_redirect}
-            target="_blank"
-            rel="noreferrer"
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+            }}
           >
-            <Typography component={"h3"} fontSize={"16px"} fontWeight={500}>
-              {committerData.commiter_name}
+            {" "}
+            <a
+              href={committerData.commiter_redirect}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Typography component={"h3"} fontSize={"14px"} fontWeight={600}>
+                {committerData.commiter_name}
+              </Typography>
+            </a>
+            <Typography component={"p"} fontSize={"12px"}>
+              committed
             </Typography>
-          </a>
-          <Typography component={"p"} fontSize={"14px"}>
-            Comitted {moment(commitData.date).fromNow()}
+          </Box>
+          <Typography component={"p"} fontSize={"12px"}>
+            {moment(commitData.date).fromNow()}
           </Typography>
         </Box>
       </Box>
@@ -132,10 +150,14 @@ const Commit = ({ data }) => {
           className={Style.icon_buttons}
           onClick={() => copyToClipboard(commitData.sha)}
         >
-          <ContentCopyIcon />
+          <ContentCopyIcon
+            sx={{
+              fill: "#fff",
+            }}
+          />
         </button>
         <a href={commitData.url} target="_blank" rel="noreferrer">
-          <Typography component={"p"} fontSize={"14px"} fontWeight={300}>
+          <Typography component={"p"} fontSize={"12px"} fontWeight={300}>
             {commitData.sha.slice(0, 7)}
           </Typography>
         </a>
