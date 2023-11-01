@@ -17,6 +17,8 @@ function App() {
   const [openSnack, setOpenSnack] = useState(false);
   const [snackError, setSnackError] = useState("");
 
+  let baseUrl = import.meta.env.VITE_BACK_URL;
+
   const handleCloseSnack = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -28,7 +30,7 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("http://localhost:3000/commits")
+      .get(`${baseUrl}/commits`)
       .then((res) => {
         setCommits(res.data.commits);
         setIsLoading(false);
